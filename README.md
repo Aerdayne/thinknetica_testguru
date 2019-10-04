@@ -3,5 +3,6 @@
 Entities:
 
 * Questions
+* Answers
 * Tests
 * Users
