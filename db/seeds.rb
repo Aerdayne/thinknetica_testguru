@@ -6,13 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-['Test Category #1', 'Test Category #2', 'Test Category #3'].each do |category|
-  Category.create!(title: category)
-end
+categories = Category.create!([
+  { title: 'Test Category #1' },
+  { title: 'Test Category #2' },
+  { title: 'Test Category #3' }
+])
 
-['Test #1', 'Test #2', 'Test #3', 'Test #4', 'Test #5'].each do |test|
-  Test.create!(title: test, category_id: 1)
-end
+tests = Test.create!([
+  { title: 'Test #1', category_id: categories.sample.id },
+  { title: 'Test #2', category_id: categories.sample.id },
+  { title: 'Test #3', category_id: categories.sample.id }
+])
 
 (0..15).each do |num|
   Question.create!(content: num)
