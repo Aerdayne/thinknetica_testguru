@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+user = User.create!(username: 'test', password: '123')
+
 categories = Category.create!([
   { title: 'Test Category #1' },
   { title: 'Test Category #2' },
@@ -13,14 +15,21 @@ categories = Category.create!([
 ])
 
 tests = Test.create!([
-  { title: 'Test #1', category_id: categories.sample.id },
-  { title: 'Test #2', category_id: categories.sample.id },
-  { title: 'Test #3', category_id: categories.sample.id }
+  { title: 'Test #1', category: categories.sample, author: user },
+  { title: 'Test #2', category: categories.sample, author: user },
+  { title: 'Test #3', category: categories.sample, author: user }
 ])
 
-(0..15).each do |num|
-  Question.create!(content: num)
-  Answer.create!(content: num)
-end
-
-User.create!(username: 'test', password: '123')
+questions = Question.create!([
+  { content: 'Question #1', test: tests.sample },
+  { content: 'Question #2', test: tests.sample },
+  { content: 'Question #3', test: tests.sample },
+  { content: 'Question #4', test: tests.sample }
+])
+  
+answers = Answer.create!([
+  { content: 'Answer #1', question: questions.sample },
+  { content: 'Answer #2', question: questions.sample },
+  { content: 'Answer #3', question: questions.sample },
+  { content: 'Answer #4', question: questions.sample }
+])
