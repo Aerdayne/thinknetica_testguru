@@ -5,7 +5,7 @@ class User < ApplicationRecord
  
   validates :username, :email, presence: true
 
-  def taken_tests_by_level(level = :easy)
-    tests.send(level)
+  def taken_tests_by_level(level)
+    tests.where(level: level)
   end
 end
