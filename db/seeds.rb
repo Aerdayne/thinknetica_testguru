@@ -1,4 +1,4 @@
-user = User.create!(username: 'test', password: '123')
+user = User.create!(username: 'test', password: '123', email: 'asd@asd.com')
 
 categories = Category.create!([
   { title: 'Test Category #1' },
