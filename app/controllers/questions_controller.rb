@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:content, :level)
+    params.require(:question).permit(:content)
   end
 
   def identify_test
