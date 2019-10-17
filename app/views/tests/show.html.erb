@@ -1,0 +1,39 @@
+<div class="col-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Level</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @test.title %></td>
+        <td><%= @test.content %></td>
+        <td><%= @test.level %></td>
+        <td><%= @test.category&.title %></td>
+    </tbody>
+  </table>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to 'Edit', edit_test_path(@test), class: 'btn btn-primary' %>
+    <%= link_to 'Add a question', new_test_question_path(@test), class: 'btn btn-primary'   %>
+    <%= link_to 'Delete', test_path(@test), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'   %>
+    <%= link_to 'View tests', tests_path, class: 'btn btn-primary' %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Question #</th>
+        <th scope="col">Content</th>
+        <th scope="col">Test</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @test.questions.each_with_index do |question, index| %>
+        <%= render partial: question, locals: { question: question, counter: index + 1 } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
