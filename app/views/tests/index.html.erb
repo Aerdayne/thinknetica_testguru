@@ -1,0 +1,21 @@
+<div class="col-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Test #</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Level</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tests.each_with_index do |test, index| %>
+        <%= render partial: test, locals: { test: test, counter: index + 1 } %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to 'Add a test', new_test_path(@test), class: 'btn btn-primary'   %>
+  </div>
+</div>

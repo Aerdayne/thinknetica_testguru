@@ -1,0 +1,21 @@
+<div class="col-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Content</th>
+        <th scope="col">Test</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @question.content %></td>
+        <td><%= @question.test.title %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-primary' %>
+    <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
+    <%= link_to 'View test', @question.test, class: 'btn btn-primary' %>
+  </div>
+</div>
