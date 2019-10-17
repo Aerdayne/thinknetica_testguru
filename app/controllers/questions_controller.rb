@@ -30,7 +30,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    redirect_to @question.test if @question.destroy
+    @question.destroy
+    redirect_to @question.test
   end
 
   private
