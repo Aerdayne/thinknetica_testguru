@@ -16,6 +16,21 @@
   <div class="btn-group" role="group" aria-label="Basic example">
     <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-primary' %>
     <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
+    <%= link_to 'New answer', new_question_answer_path(@question), class: 'btn btn-primary' %>
     <%= link_to 'View test', @question.test, class: 'btn btn-primary' %>
   </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Answer #</th>
+        <th scope="col">Content</th>
+        <th scope="col">Correct</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @question.answers.each_with_index do |answer, index| %>
+        <%= render partial: answer, locals: { answer: answer, counter: index + 1 } %>
+      <% end %>
+    </tbody>
+  </table>
 </div>

@@ -4,5 +4,6 @@
   <td><%= test.content %></td>
   <td><%= test.level %></td>
   <td><%= test.category&.title %></td>
-  <td><%= test.questions.count %>
+  <td><%= test.questions.count %></td>
+  <td><%= button_to 'Start', start_test_path(test), class: 'btn btn-primary' %></td>
 </tr>

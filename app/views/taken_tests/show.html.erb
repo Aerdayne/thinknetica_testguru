@@ -1,0 +1,14 @@
+<div class="col-6">
+  <h2> Passing the '<%= @taken_test.test.title %>' Test </h2>
+  <h3><%= @taken_test.current_question.content %></h3>
+  <%= form_with url: taken_test_path(@taken_test), local: true, method: :put do |form| %>
+    <%= form.collection_check_boxes :answer_ids, @taken_test.current_question.answers, :id, :content do |collection| %>
+      <div class="form-group row">
+        <%= collection.check_box id: "answer_ids_#{collection.object.id}", class: 'col-1 offset-4 form-control' %>
+        <%= collection.label(class:'col-2 col-form-label') %>
+      </div>
+    <% end %>
+    <p><%= form.submit 'Next' %></p>
+  <% end%>
+  <h3> Progress: <%= @taken_test.test.questions.index(@taken_test.current_question) + 1 %>/<%= @taken_test.test.questions.length %>
+</div>
