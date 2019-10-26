@@ -6,14 +6,25 @@ class TakenTest < ApplicationRecord
   before_validation :before_validation_set_current_question
 
   def accept!(answer_ids)
-    if correct_answer?(answer_ids)
-      self.correct_questions += 1
-    end
+    answer_ids.shift
+    self.correct_questions += 1 if correct_answer?(answer_ids)
     save!
   end
 
   def completed?
     current_question.nil?
+  end
+
+  def successful?
+    correct_questions / test.questions.size >= 0.85
+  end
+
+  def output_progress
+    "#{test.questions.index(current_question) + 1}/#{test.questions.length}"
+  end
+
+  def output_result
+    "Your result: #{correct_questions}/#{test.questions.size}"
   end
 
   private

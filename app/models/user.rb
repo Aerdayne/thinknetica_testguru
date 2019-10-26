@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :username, :email, presence: true
 
   def taken_test(test)
-    taken_tests.order(id: :desc).find_by(test_id: test.id)
+    taken_tests.order(id: :desc).find_by(test: test)
   end
 
   def taken_tests_by_level(level)
