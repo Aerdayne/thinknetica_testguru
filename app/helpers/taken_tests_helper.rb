@@ -5,6 +5,15 @@ module TakenTestsHelper
             else
               'text-danger'
             end
-    content_tag(:h3, taken_test.output_result, class: color)
+    content_tag(:h3, output_result(taken_test), class: color)
   end
+
+  def output_result(taken_test)
+    "Your result: #{taken_test.correct_questions}/#{taken_test.questions_amount}"
+  end
+
+  def output_progress(taken_test)
+    "#{taken_test.current_question_number}/#{taken_test.questions_amount}"
+  end
+
 end
