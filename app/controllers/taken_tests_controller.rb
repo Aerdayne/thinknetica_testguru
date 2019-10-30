@@ -1,5 +1,5 @@
 class TakenTestsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :identify_taken_test, only: %i[show result update]
 
   def show; end

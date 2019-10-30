@@ -1,9 +1,10 @@
 class TestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :identify_test, only: %i[start show edit update destroy]
 
   def start
-    User.first.tests.push(@test)
-    redirect_to User.first.taken_test(@test)
+    current_user.tests.push(@test)
+    redirect_to current_user.taken_test(@test)
   end
 
   def show; end
@@ -17,8 +18,7 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.new(test_params)
-    @test.author = User.first # temp
+    @test = current_user.authored_tests.new(test_params)
     if @test.save
       redirect_to @test
     else
