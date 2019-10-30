@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg">
+  <%= brand %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'View tests', tests_path, class: 'nav-link' %>
+      </li>
+      <%= signup_link %>
+      <%= signin_link %>
+      <%= signout_link %>
+    </ul>
+    <%= welcome_message %>
+  </div>
+</nav>

@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'tests#index'
 
+  get :signup, to: 'users#new'
+  get :signin, to: 'sessions#new'
+  delete :signout, to: 'sessions#destroy'
+
+  resources :users, only: :create
+  resources :sessions, only: :create
+
   resources :tests do
     resources :questions, shallow: true do
       resources :answers, shallow: true

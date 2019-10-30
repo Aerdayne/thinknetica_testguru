@@ -21,6 +21,5 @@ class BasicIntegrityFix < ActiveRecord::Migration[6.0]
 
     change_column_null :users, :username, false
     change_column_null :users, :email, false
-    change_column_null :users, :password, false
   end
 end
