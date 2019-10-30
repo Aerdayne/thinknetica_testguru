@@ -1,5 +1,10 @@
 class TestsController < ApplicationController
-  before_action :identify_test, only: %i[show edit update destroy]
+  before_action :identify_test, only: %i[start show edit update destroy]
+
+  def start
+    User.first.tests.push(@test)
+    redirect_to User.first.taken_test(@test)
+  end
 
   def show; end
 
@@ -38,11 +43,12 @@ class TestsController < ApplicationController
 
   private
 
+  def test_params
+    params.require(:test).permit(:title, :content, :level, :category_id)
+  end
+
   def identify_test
     @test = Test.find(params[:id])
   end
 
-  def test_params
-    params.require(:test).permit(:title, :content, :level, :category_id)
-  end
 end
