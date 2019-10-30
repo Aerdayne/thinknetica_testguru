@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :authored_tests, class_name: 'Test', foreign_key: :author_id
 
   validates :email, uniqueness: true
-
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   has_secure_password
 
   def taken_test(test)

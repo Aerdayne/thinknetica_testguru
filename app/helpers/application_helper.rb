@@ -7,13 +7,16 @@ module ApplicationHelper
     Time.current.year
   end
 
-  def flash_message(message, type)
-    return if message.nil?
+  def flash_message(type)
+    content_tag :p, flash[type], class: "alert #{bs_alert_class(type)}" unless flash[type].nil?
+  end
 
-    if type == :alert
-      content_tag :p, message, class: 'alert alert-danger'
+  def bs_alert_class(type)
+    case type
+    when :alert
+      'alert-danger'
     else
-      content_tag :p, message, class: 'alert alert-warning'
+      'alert-warning'
     end
   end
 
