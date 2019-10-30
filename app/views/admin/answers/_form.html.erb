@@ -10,7 +10,9 @@
       <%= form.label :correct, class: 'col-2 col-form-label'%>
       <%= form.check_box :correct, id: :answer_correct, class: 'form-control col-1' %>
     </div>
-    <%= form.submit class: 'btn btn-primary' %>
+    <div class='btn-group'>
+      <%= link_to 'View question', @answer.question, class: 'btn btn-primary' %> 
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
   <% end %>
-  <%= link_to 'View question', @answer.question, class: 'btn btn-primary' %>
 </div>

@@ -7,13 +7,18 @@ module ApplicationHelper
     Time.current.year
   end
 
-  def flash_message(message, type)
-    return if message.nil?
+  def flash_message(type)
+    content_tag :p, flash[type], class: "alert #{bs_alert_class(type)}" unless flash[type].nil?
+  end
 
-    if type == :alert
-      content_tag :p, message, class: 'alert alert-danger'
+  def bs_alert_class(type)
+    case type
+    when 'alert'
+      'alert-danger'
+    when 'notice'
+      'alert-success'
     else
-      content_tag :p, message, class: 'alert alert-warning'
+      'alert-warning'
     end
   end
 
@@ -23,23 +28,23 @@ module ApplicationHelper
 
   def signup_link
     content_tag :li, class: 'nav-item' do
-      link_to 'Sign up', signup_path, class: 'nav-link' unless logged_in?
+      link_to 'Sign up', new_user_registration_path, class: 'nav-link' unless signed_in?
     end
   end
 
   def signin_link
     content_tag :li, class: 'nav-item' do
-      link_to 'Sign in', signin_path, class: 'nav-link' unless logged_in?
+      link_to 'Sign in', new_user_session_path, class: 'nav-link' unless signed_in?
     end
   end
 
   def signout_link
     content_tag :li, class: 'nav-item' do
-      link_to 'Sign out', signout_path, method: :delete, class: 'nav-link' if logged_in?
+      link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' if signed_in?
     end
   end
 
   def welcome_message
-    content_tag :span, "Welcome, #{current_user.username} Guru", class: 'navbar-text' if logged_in?
+    content_tag :span, "You are logged in as #{current_user.email}", class: 'navbar-text' if signed_in?
   end
 end

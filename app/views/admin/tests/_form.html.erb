@@ -1,6 +1,6 @@
 <div class="col-6">
   <h2><%= test_header(@test) %></h2>
-  <%= form_with model: @test, local: true do |form| %>
+  <%= form_with model: [:admin, @test], local: true do |form| %>
     <%= render 'shared/errors', resource: @test %>
     <div class='form-group'>
       <%= form.label :title %>
@@ -18,7 +18,9 @@
       <%= form.label :category_id %>
       <%= form.collection_select :category_id, Category.all, :id, :title, {prompt: true}, {class: "browser-default custom-select"} %>
     </div>
-    <%= form.submit class: 'btn btn-primary' %>
+    <div class='btn-group'>
+      <%= link_to 'View tests', tests_path, class: 'btn btn-primary' %>
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
   <% end %>
-  <%= link_to 'View tests', tests_path, class: 'btn btn-primary' %>
 </div>

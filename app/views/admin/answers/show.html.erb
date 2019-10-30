@@ -14,8 +14,8 @@
     </tbody>
   </table>
   <div class="btn-group" role="group" aria-label="Basic example">
-    <%= link_to 'Edit', edit_answer_path(@answer), class: 'btn btn-primary' %>
-    <%= link_to 'Delete', answer_path(@answer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
-    <%= link_to 'View question', @answer.question, class: 'btn btn-primary' %>
+    <%= link_to 'Edit', edit_admin_answer_path(@answer), class: 'btn btn-primary' %>
+    <%= link_to 'Delete', admin_answer_path(@answer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %>
+    <%= link_to 'View question', admin_question_path(@answer.question), class: 'btn btn-primary' %>
   </div>
 </div>
