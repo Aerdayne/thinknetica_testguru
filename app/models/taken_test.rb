@@ -5,8 +5,9 @@ class TakenTest < ApplicationRecord
 
   before_validation :before_validation_set_current_question
 
+  MINIMUM_PERCENTAGE = 0.85
+
   def accept!(answer_ids)
-    p answer_ids.reject(&:empty?)
     self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?))
     save!
   end
@@ -16,15 +17,15 @@ class TakenTest < ApplicationRecord
   end
 
   def successful?
-    correct_questions / test.questions.size >= 0.85
+    correct_questions / test.questions.size >= MINIMUM_PERCENTAGE
   end
 
-  def output_progress
-    "#{test.questions.index(current_question) + 1}/#{test.questions.length}"
+  def questions_amount
+    test.questions.length
   end
 
-  def output_result
-    "Your result: #{correct_questions}/#{test.questions.size}"
+  def current_question_number
+    test.questions.index(current_question) + 1
   end
 
   private
@@ -34,7 +35,7 @@ class TakenTest < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    correct_answers.ids.sort == answer_ids.map(&:to_i).sort
+    correct_answers.ids.sort == Array(answer_ids).map(&:to_i).sort
   end
 
   def correct_answers
