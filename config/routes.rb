@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   root to: 'tests#index'
 
-  get :signup, to: 'users#new'
-  get :signin, to: 'sessions#new'
-  delete :signout, to: 'sessions#destroy'
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
-  resources :users, only: :create
-  resources :sessions, only: :create
-
-  resources :tests do
-    resources :questions, shallow: true do
-      resources :answers, shallow: true
+  resources :tests, only: :index do
+    resources :questions, only: :show, shallow: true do
+      resources :answers, only: :show, shallow: true
     end
 
     post :start, on: :member
@@ -23,4 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :tests, shallow: true do
+      resources :questions, shallow: true do
+        resources :answers, shallow: true
+      end
+    end
+  end
 end
