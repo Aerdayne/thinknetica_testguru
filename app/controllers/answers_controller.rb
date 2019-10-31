@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :identify_question, only: %i[new create]
-  before_action :identify_answer, only: %i[show edit update destroy]
+  before_action :identify_answer, only: %i[show]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_from_record_not_found
 

@@ -7,6 +7,6 @@ class Admin::BaseController < ApplicationController
   private
 
   def admin_permission
-    redirect_to root_path, alert: 'You don\'t have necessary privileges to access this page.' unless current_user.is_a?(Admin)
+    redirect_to root_path, alert: 'You don\'t have necessary privileges to access this page.' unless current_user.admin?
   end
 end

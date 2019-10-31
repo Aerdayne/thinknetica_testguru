@@ -12,14 +12,10 @@ module ApplicationHelper
   end
 
   def bs_alert_class(type)
-    case type
-    when 'alert'
-      'alert-danger'
-    when 'notice'
-      'alert-success'
-    else
-      'alert-warning'
-    end
+    hash = { 'alert' => 'alert-danger',
+             'notice' => 'alert-success' }
+    hash.default = 'alert-warning'
+    hash[type]
   end
 
   def brand

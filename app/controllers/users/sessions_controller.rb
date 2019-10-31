@@ -2,7 +2,6 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  after_action :welcome, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -10,9 +9,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    welcome
+  end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -20,7 +20,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(user)
-    if user.is_a?(Admin)
+    if user.admin?
       admin_tests_path
     else
       tests_path

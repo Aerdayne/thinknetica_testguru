@@ -1,6 +1,6 @@
 <div class="col-6">
   <h2><%= answer_header(@answer) %></h2>
-  <%= form_with model: [@question, @answer], local: true do |form| %>
+  <%= form_with model: [:admin, @question, @answer], local: true do |form| %>
     <%= render 'shared/errors', resource: @answer %>
     <div class='form-group'>
       <%= form.label :content %>

@@ -1,11 +1,6 @@
 class Admin::TestsController < Admin::BaseController
   before_action :identify_test, only: %i[start show edit update destroy]
 
-  def start
-    current_user.tests.push(@test)
-    redirect_to current_user.taken_test(@test)
-  end
-
   def show; end
 
   def index
