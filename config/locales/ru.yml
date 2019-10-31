@@ -1,0 +1,8 @@
+ru:
+  taken_tests:
+    gist:
+      success: "Gist успешно создан: %{url}"
+      failure: "Произошла ошибка во время формирования gist."
+  services:
+    gist:
+      description: "Вопрос о %{title} от TestGuru"

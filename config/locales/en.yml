@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  taken_tests:
+    gist:
+      success: "Gist successfully created: %{url}"
+      failure: "An error occured while prosessing this gist."
+  services:
+    gist:
+      description: "A question about %{title} from TestGuru"

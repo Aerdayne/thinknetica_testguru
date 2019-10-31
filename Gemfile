@@ -9,6 +9,8 @@ gem 'devise'
 
 gem 'jquery-rails'
 
+gem 'octokit'
+
 gem 'semver'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

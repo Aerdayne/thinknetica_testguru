@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :taken_tests, only: %i[show update] do
     member do
       get :result
+      post :gist
     end
   end
 
@@ -24,5 +25,6 @@ Rails.application.routes.draw do
         resources :answers, shallow: true
       end
     end
+    resources :gists, only: :index
   end
 end
