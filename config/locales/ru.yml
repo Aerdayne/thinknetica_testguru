@@ -1,7 +1,7 @@
 ru:
   taken_tests:
     gist:
-      success: "Gist успешно создан: %{url}"
+      success: '%{url} был успешно создан!'
       failure: "Произошла ошибка во время формирования gist."
   services:
     gist:

@@ -1,5 +1,5 @@
 module Admin::GistsHelper
   def gist_link(url)
-    url.split('/')
+    url.split('/')[-1]
   end
 end

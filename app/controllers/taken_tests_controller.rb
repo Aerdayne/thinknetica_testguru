@@ -19,13 +19,13 @@ class TakenTestsController < ApplicationController
   def gist
     question = @taken_test.current_question
     result = GistQuestionService.new(question).call
-    flash_options = if result
-                      current_user.gists.create(question: question, user: current_user, url: result['html_url'])
-                      { notice: t('.success', url: result['html_url']) }
-                    else
-                      { alert: t('.failure') }
-                    end
-    redirect_to @taken_test, flash_options
+    if result.success?
+      current_user.gists.create(question: question, url: result.html_url)
+      flash[:notice] = t('.success', url: helpers.link_to('Gist', result.html_url, target: '_blank'))
+    else
+      flash[:alert] = t('.failure') 
+    end
+    redirect_to @taken_test
   end
 
   private

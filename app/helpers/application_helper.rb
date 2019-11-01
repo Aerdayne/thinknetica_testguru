@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def flash_message(type)
-    content_tag :p, flash[type], class: "alert #{bs_alert_class(type)}" unless flash[type].nil?
+    content_tag :p, flash[type].html_safe, class: "alert #{bs_alert_class(type)}" unless flash[type].nil?
   end
 
   def bs_alert_class(type)
