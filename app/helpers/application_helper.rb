@@ -21,9 +21,9 @@ module ApplicationHelper
   def brand
     link_to 'Test Guru', root_path, class: 'navbar-brand'
   end
-  
+
   def tests_link
-    if current_user.admin?
+    if current_user&.admin?
       content_tag :li, class: 'nav-item' do
         link_to 'View tests', admin_tests_path, class: 'nav-link'
       end
