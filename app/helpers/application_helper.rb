@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def flash_message(type)
-    content_tag :p, flash[type], class: "alert #{bs_alert_class(type)}" unless flash[type].nil?
+    content_tag :p, flash[type].html_safe, class: "alert #{bs_alert_class(type)}" unless flash[type].nil?
   end
 
   def bs_alert_class(type)
@@ -20,6 +20,24 @@ module ApplicationHelper
 
   def brand
     link_to 'Test Guru', root_path, class: 'navbar-brand'
+  end
+
+  def tests_link
+    if current_user&.admin?
+      content_tag :li, class: 'nav-item' do
+        link_to 'View tests', admin_tests_path, class: 'nav-link'
+      end
+    else
+      content_tag :li, class: 'nav-item' do
+        link_to 'View tests', tests_path, class: 'nav-link'
+      end
+    end
+  end
+
+  def gists_link
+    content_tag :li, class: 'nav-item' do
+      link_to 'View gists', admin_gists_path, class: 'nav-link' if current_user.admin?
+    end
   end
 
   def signup_link

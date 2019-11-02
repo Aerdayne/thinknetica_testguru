@@ -9,6 +9,9 @@ gem 'devise'
 
 gem 'jquery-rails'
 
+gem 'octokit'
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'semver'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
