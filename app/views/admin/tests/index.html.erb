@@ -1,9 +1,13 @@
-<div class="col-6">
+<div class="col-8">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Test #</th>
-        <th scope="col">Title</th>
+        <th scope="col" class="sort-by-title pointer">
+          Title
+          <%= octicon 'arrow-up', class: 'text-success hide' %>
+          <%= octicon 'arrow-down', class: 'text-success hide' %>
+        </th>
         <th scope="col">Content</th>
         <th scope="col">Level</th>
         <th scope="col">Category</th>
