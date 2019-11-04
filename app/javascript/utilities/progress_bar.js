@@ -22,7 +22,6 @@ function renderProgressBar(form) {
 
   progressBar.setAttribute('aria-valuenow', (currentQuestion/totalQuestions)*100)
   progressBar.setAttribute('style', 'width: ' + (currentQuestion/totalQuestions)*100 + '%')
-  progressBar.value = (currentQuestion/totalQuestions)*100
   progressBarWrapper.appendChild(progressBar)
   form.appendChild(progressBarWrapper)
 }
