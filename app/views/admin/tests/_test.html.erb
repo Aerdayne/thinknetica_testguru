@@ -1,9 +1,15 @@
 <tr>
   <td><%= counter %></td>
-  <td><%= link_to test.title, admin_test_path(test) %></td>
+  <td>
+    <%= link_to test.title, admin_test_path(test), class: 'test-title', data: { test_id: test.id } %>
+    <%= render 'form_inline', test: test == @test ? @test : test %>
+  </td>
   <td><%= test.content %></td>
   <td><%= test.level %></td>
   <td><%= test.category&.title %></td>
   <td><%= test.questions.count %></td>
+  <td>
+    <%= button_to 'Edit', edit_admin_test_path(test), method: :get, data: { test_id: test.id }, class: 'btn btn-primary form-inline-link' %>
+  </td>
   <td><%= button_to 'Start', start_test_path(test), class: 'btn btn-primary' %></td>
 </tr>

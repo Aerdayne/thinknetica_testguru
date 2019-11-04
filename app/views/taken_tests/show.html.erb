@@ -1,7 +1,11 @@
 <div class="col-8">
   <h2> Passing the '<%= @taken_test.test.title %>' Test </h2>
   <h3><%= @taken_test.current_question.content %></h3>
-  <%= form_with url: taken_test_path(@taken_test), local: true, method: :put do |form| %>
+  <%= form_with url: taken_test_path(@taken_test), 
+                data: { current_question_id: @taken_test.current_question_number, questions_amount: @taken_test.questions_amount }, 
+                class: 'answer-form',
+                local: true, 
+                method: :put do |form| %>
     <%= form.collection_check_boxes :answer_ids, @taken_test.current_question.answers, :id, :content do |collection| %>
       <div class="form-group row">
         <%= collection.check_box id: "answer_ids_#{collection.object.id}".to_sym, class: 'col-1 offset-4 form-control' %>

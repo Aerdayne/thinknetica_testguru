@@ -9,8 +9,8 @@
       </tr>
     </thead>
     <tbody>
-      <% @gists.each_with_index do |test, index| %>
-        <%= render partial: test, locals: { test: test, counter: index + 1 } %>
+      <% @gists.each_with_index do |gist, index| %>
+        <%= render partial: gist, locals: { gist: gist, counter: index + 1 } %>
       <% end %>
     </tbody>
   </table>

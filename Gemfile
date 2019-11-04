@@ -10,8 +10,8 @@ gem 'devise'
 
 gem 'jquery-rails'
 
+gem 'dotenv-rails', groups: %i[development test]
 gem 'octokit'
-gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'semver'
 
