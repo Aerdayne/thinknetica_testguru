@@ -3,7 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :taken_tests, dependent: :destroy
   has_many :tests, through: :taken_tests
+
+  has_many :given_badges, dependent: :destroy
+  has_many :badges, through: :given_badges
+
   has_many :authored_tests, class_name: 'Test', foreign_key: :author_id
+
   has_many :gists, dependent: :destroy
 
   validates :name, presence: true
