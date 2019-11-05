@@ -4,12 +4,19 @@ class TakenTestsController < ApplicationController
 
   def show; end
 
-  def result; end
+  def result
+  end
 
   def update
     @taken_test.accept!(params[:answer_ids])
     if @taken_test.completed?
       TestsMailer.completed_test(@taken_test).deliver_now
+      BadgeDispenserService.new.parse_criteria(@taken_test).each do |badge|
+        unless badge.nil?
+          current_user.badges << badge
+          flash.now[:notice] = "You have been awarded with a '#{badge.name}' badge!"
+        end
+      end
       redirect_to result_taken_test_path(@taken_test)
     else
       render :show

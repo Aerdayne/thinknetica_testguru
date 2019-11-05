@@ -1,0 +1,17 @@
+<div class="col-8">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Badge #</th>
+        <th scope="col" class="colspan-2">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @badges.each_with_index do |badge, index| %>
+        <%= render partial: badge, locals: { given_badge: badge, counter: index + 1 } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

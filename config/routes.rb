@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :given_badges, only: :index
+
   namespace :admin do
     resources :tests, shallow: true do
       patch :update_inline, on: :member

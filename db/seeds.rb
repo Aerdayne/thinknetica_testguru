@@ -1,4 +1,4 @@
-user = User.create!(name: 'test', password: '123456', email: 'asd@asd.com')
+user = User.create!(name: 'test', password: '123456', email: 'asd@asd.com', type: 'Admin', username: 'InternetJanitor')
 
 categories = Category.create!([
   { title: 'Test Category #1' },
@@ -20,8 +20,14 @@ tests.each do |test_model|
   4.times do |num|
     question = Question.new({ content: "Question #{num}", test: test_model })
     4.times do |num|
-      question.answers.build({ content: "Answer #{num}", question: question, correct: [true, false].sample })
+      question.answers.build({ content: "Answer #{num}", question: question, correct: false }) #[true, false].sample })
     end
     question.save
   end
 end
+
+Badge.create!([
+  { name: 'Category #1 Guru', description: "Complete all tests from the 'Test Category #1' category", image_path: 'all_category_1_tests.svg' },
+  { name: 'No second chance', description: "Complete a test at the first try", image_path: 'first_try.svg' },
+  { name: 'Test Guru', description: "Complete all the hard tests (level 5 or higher)", image_path: 'all_hard_tests.svg' }
+])

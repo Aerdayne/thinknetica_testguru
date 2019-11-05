@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_120519) do
 
   create_table "badges", force: :cascade do |t|
     t.text "name", null: false
+    t.text "description", default: "No description"
     t.text "image_path", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_120519) do
   create_table "taken_tests", force: :cascade do |t|
     t.integer "user_id"
     t.integer "test_id"
+    t.boolean "successful", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "current_question_id"

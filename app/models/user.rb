@@ -2,7 +2,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :taken_tests, dependent: :destroy
-  has_many :tests, through: :taken_tests
+  # Probably not the best solution
+  has_many :tests, through: :taken_tests do
+    def successful
+      where("taken_tests.successful = ?", true)
+    end
+  end
 
   has_many :given_badges, dependent: :destroy
   has_many :badges, through: :given_badges

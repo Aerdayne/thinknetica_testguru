@@ -40,6 +40,12 @@ module ApplicationHelper
     end
   end
 
+  def badges_link
+    content_tag :li, class: 'nav-item' do
+      link_to 'View your badges', given_badges_path, class: 'nav-link'
+    end
+  end
+
   def signup_link
     content_tag :li, class: 'nav-item' do
       link_to 'Sign up', new_user_registration_path, class: 'nav-link' unless signed_in?

@@ -4,6 +4,7 @@ class TakenTest < ApplicationRecord
   belongs_to :current_question, class_name: 'Question', optional: true
 
   before_validation :before_validation_set_current_question
+  before_save :before_save_set_success_status
 
   MINIMUM_PERCENTAGE = 0.85
 
@@ -29,6 +30,10 @@ class TakenTest < ApplicationRecord
   end
 
   private
+
+  def before_save_set_success_status
+    self.successful = true if successful?
+  end
 
   def before_validation_set_current_question
     self.current_question = next_question
