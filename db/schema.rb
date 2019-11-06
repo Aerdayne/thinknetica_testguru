@@ -25,8 +25,11 @@ ActiveRecord::Schema.define(version: 2019_11_05_120519) do
     t.text "name", null: false
     t.text "description", default: "No description"
     t.text "image_path", null: false
+    t.text "criterion", default: "unspecified"
+    t.text "value", default: "unspecified"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["criterion", "value"], name: "index_badges_on_criterion_and_value", unique: true
     t.index ["name"], name: "index_badges_on_name"
   end
 

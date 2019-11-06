@@ -42,5 +42,4 @@ class TakenTestsController < ApplicationController
   def identify_taken_test
     @taken_test = TakenTest.find(params[:id])
   end
-
 end

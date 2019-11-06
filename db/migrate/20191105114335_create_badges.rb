@@ -4,6 +4,8 @@ class CreateBadges < ActiveRecord::Migration[6.0]
       t.text :name
       t.text :description
       t.text :image_path
+      t.text :criterion
+      t.text :value
 
       t.timestamps
     end

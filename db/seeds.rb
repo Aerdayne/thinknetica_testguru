@@ -27,7 +27,18 @@ tests.each do |test_model|
 end
 
 Badge.create!([
-  { name: 'Category #1 Guru', description: "Complete all tests from the 'Test Category #1' category", image_path: 'all_category_1_tests.svg' },
-  { name: 'No second chance', description: "Complete a test at the first try", image_path: 'first_try.svg' },
-  { name: 'Test Guru', description: "Complete all the hard tests (level 5 or higher)", image_path: 'all_hard_tests.svg' }
+  { name: 'Category #1 Guru', 
+    description: "Complete all tests from the 'Test Category #1' category", 
+    image_path: 'all_category_1_tests.svg',
+    criterion: 'category',
+    value: 'Test Category #1' },
+  { name: 'No second chance', 
+    description: "Complete a test at the first try", 
+    image_path: 'first_try.svg',
+    criterion: 'first attempt'},
+  { name: 'Test Guru',
+    description: "Complete all the hard tests (level 5 or higher)", 
+    image_path: 'all_hard_tests.svg',
+    criterion: 'level',
+    value: 'hard' }
 ])
