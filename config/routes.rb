@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :given_badges, only: :index
+  resources :badges, only: :index
 
   namespace :admin do
     resources :tests, shallow: true do
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
         resources :answers, shallow: true
       end
     end
+    resources :badges
     resources :gists, only: :index
   end
 end

@@ -6,4 +6,9 @@ module BadgesHelper
   def render_icon(image_path)
     tag.img src: "/badges/#{image_path}", alt: 'No icon'
   end
+
+  def badge_header(badge)
+    action = badge.new_record? ? 'Create new' : 'Edit'
+    "#{action} Badge"
+  end
 end

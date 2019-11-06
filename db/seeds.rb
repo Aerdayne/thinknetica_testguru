@@ -35,7 +35,7 @@ Badge.create!([
   { name: 'No second chance', 
     description: "Complete a test at the first try", 
     image_path: 'first_try.svg',
-    criterion: 'first attempt'},
+    criterion: 'first_attempt'},
   { name: 'Test Guru',
     description: "Complete all the hard tests (level 5 or higher)", 
     image_path: 'all_hard_tests.svg',

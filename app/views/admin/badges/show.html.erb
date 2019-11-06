@@ -1,0 +1,29 @@
+<div class="col-8">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Badge</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Image path</th>
+        <th scope="col">Criterion</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= render_icon(@badge.image_path) %></td>
+        <td><%= @badge.name %></td>
+        <td><%= @badge.description %></td>
+        <td><%= @badge.image_path %></td>
+        <td><%= @badge.criterion %></td>
+        <td><%= @badge.value %></td>
+    </tbody>
+  </table>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to 'Edit', edit_admin_badge_path(@badge), class: 'btn btn-primary' %>
+    <%= link_to 'Delete', admin_badge_path(@badge), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'   %>
+    <%= link_to 'View badges', admin_badges_path, class: 'btn btn-primary' %>
+  </div>
+</div>

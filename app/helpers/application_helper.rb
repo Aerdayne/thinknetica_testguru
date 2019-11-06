@@ -40,9 +40,21 @@ module ApplicationHelper
     end
   end
 
-  def badges_link
+  def given_badges_link
     content_tag :li, class: 'nav-item' do
       link_to 'View your badges', given_badges_path, class: 'nav-link'
+    end
+  end
+
+  def badges_link
+    if current_user&.admin?
+      content_tag :li, class: 'nav-item' do
+        link_to 'View badges', admin_badges_path, class: 'nav-link'
+      end
+    else
+      content_tag :li, class: 'nav-item' do
+        link_to 'View badges', badges_path, class: 'nav-link'
+      end
     end
   end
 
