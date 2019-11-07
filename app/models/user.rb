@@ -7,6 +7,11 @@ class User < ApplicationRecord
     def successful
       where("taken_tests.successful = ?", true)
     end
+
+    def since_date(date)
+      date ||= '2019-01-01 00:00:00.000000'
+      where("taken_tests.created_at > ?", date)
+    end
   end
 
   has_many :given_badges, dependent: :destroy
