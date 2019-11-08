@@ -9,16 +9,29 @@ class TakenTest < ApplicationRecord
 
   def accept!(answer_ids)
     self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?))
+    self.timed = !not_timed?
     self.successful = successful?
     save!
   end
 
   def completed?
-    current_question.nil?
+    current_question.nil? || not_timed?
+  end
+
+  def not_timed?
+    return false if test.duration.nil?
+
+    end_time < DateTime.now
+  end
+
+  def end_time
+    return nil if test.duration.nil?
+
+    created_at.to_datetime + test.duration.seconds
   end
 
   def successful?
-    correct_questions / test.questions.size >= MINIMUM_PERCENTAGE
+    correct_questions / test.questions.size >= MINIMUM_PERCENTAGE && timed?
   end
 
   def questions_amount

@@ -4,5 +4,7 @@ class AddTestUserRelation < ActiveRecord::Migration[6.0]
     add_reference :tests, :category, foreign_key: true
     change_column_default :taken_tests, :successful, from: nil, to: false
     change_column_null :taken_tests, :successful, false
+    change_column_default :taken_tests, :timed, from: nil, to: true
+    change_column_null :taken_tests, :timed, true
   end
 end

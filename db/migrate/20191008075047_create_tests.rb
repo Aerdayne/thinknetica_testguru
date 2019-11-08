@@ -4,6 +4,7 @@ class CreateTests < ActiveRecord::Migration[6.0]
       t.text :title
       t.text :content
       t.integer :level
+      t.integer :duration
 
       t.timestamps
     end

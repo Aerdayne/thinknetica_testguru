@@ -10,11 +10,15 @@ class TakenTestsController < ApplicationController
     @taken_test.accept!(params[:answer_ids])
     if @taken_test.completed?
       TestsMailer.completed_test(@taken_test).deliver_now
+
+      flash[:alert] = 'Time is up!' unless @taken_test.timed?
+
       badges = BadgeDispenserService.new(@taken_test).parse_criteria
       if badges.any?
         current_user.badges << badges
         flash[:notice] = 'You just acquired a new badge! Check your badge tab'
       end
+
       redirect_to result_taken_test_path(@taken_test)
     else
       render :show
