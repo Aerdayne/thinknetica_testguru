@@ -8,26 +8,32 @@ class TakenTest < ApplicationRecord
   before_validation :before_validation_set_current_question
 
   def accept!(answer_ids)
-    self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?))
-    self.timed = !not_timed?
+    self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?)) && in_time?
+    self.timed = in_time?
     self.successful = successful?
     save!
   end
 
   def completed?
-    current_question.nil? || not_timed?
+    current_question.nil? || !in_time?
   end
 
-  def not_timed?
-    return false if test.duration.nil?
+  def in_time?
+    return true if test.duration.nil?
 
-    end_time < DateTime.now
+    end_time > DateTime.now
   end
 
   def end_time
     return nil if test.duration.nil?
 
     created_at.to_datetime + test.duration.seconds
+  end
+
+  def time_left
+    return nil if test.duration.nil?
+
+    (end_time.to_f - DateTime.now.to_f).to_f
   end
 
   def successful?

@@ -1,16 +1,22 @@
 document.addEventListener('turbolinks:load', function() {
   var form = document.querySelector('.answer-form')
 
-  if (form.dataset.endTime) { 
+  if (form.dataset.timeLeft) { 
     var timer = document.querySelector('.timer')
-    var startTime = new Date(parseInt(form.dataset.startTime))
-    var endTime = new Date(parseInt(form.dataset.endTime))
+    var timeLeft = parseInt(form.dataset.timeLeft)
+    timer.innerHTML = parseTime(timeLeft)
+  
     var interval = setInterval(() => {
-      currentTime = new Date()
-      timeLeft = Math.abs(endTime - currentTime.getTime())
-      if ((endTime - currentTime.getTime()) < 0) { clearInterval(interval) }
-      timer.innerHTML = timeLeft
+      timeLeft -= 1
+      if (timeLeft < 1) { clearInterval(interval) }
+      timer.innerHTML = parseTime(timeLeft)
     }, 1000)
   }
-  // format date display, figure out the calculations
 })
+
+function parseTime(timeLeft) {
+  var minutes = Math.floor(timeLeft / 60)
+  var seconds = ((timeLeft % 60)).toFixed(0)
+
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}

@@ -15,5 +15,4 @@ module TakenTestsHelper
   def output_progress(taken_test)
     "#{taken_test.current_question_number}/#{taken_test.questions_amount}"
   end
-
 end

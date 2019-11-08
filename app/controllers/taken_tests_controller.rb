@@ -2,7 +2,12 @@ class TakenTestsController < ApplicationController
   before_action :authenticate_user!
   before_action :identify_taken_test, only: %i[gist show result update]
 
-  def show; end
+  def show
+    if @taken_test.current_question.nil?
+      flash[:alert] = 'Test is invalid, sorry for the inconvenience'
+      redirect_to tests_path
+    end
+  end
 
   def result; end
 
@@ -32,7 +37,7 @@ class TakenTestsController < ApplicationController
       current_user.gists.create(question: question, url: result.html_url)
       flash[:notice] = t('.success', url: helpers.link_to('Gist', result.html_url, target: '_blank'))
     else
-      flash[:alert] = t('.failure') 
+      flash[:alert] = t('.failure')
     end
     redirect_to @taken_test
   end

@@ -5,8 +5,7 @@
   <%= form_with url: taken_test_path(@taken_test), 
                 data: { current_question_id: @taken_test.current_question_number, 
                         questions_amount: @taken_test.questions_amount,
-                        start_time: @taken_test.created_at.to_datetime.to_f * 1000,
-                        end_time: @taken_test.end_time.to_f * 1000 }, 
+                        time_left: @taken_test.time_left }, 
                 class: 'answer-form',
                 local: true, 
                 method: :put do |form| %>

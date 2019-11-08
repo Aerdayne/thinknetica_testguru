@@ -31,6 +31,6 @@ class Test < ApplicationRecord
   private
 
   def before_save_convert_duration
-    self.duration = duration * 60
+    self.duration = duration * 60 unless duration.nil?
   end
 end
