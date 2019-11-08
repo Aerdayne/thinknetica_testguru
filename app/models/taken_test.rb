@@ -1,14 +1,15 @@
 class TakenTest < ApplicationRecord
+  MINIMUM_PERCENTAGE = 0.85
+
   belongs_to :test
   belongs_to :user
   belongs_to :current_question, class_name: 'Question', optional: true
 
   before_validation :before_validation_set_current_question
 
-  MINIMUM_PERCENTAGE = 0.85
-
   def accept!(answer_ids)
     self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?))
+    self.successful = successful?
     save!
   end
 

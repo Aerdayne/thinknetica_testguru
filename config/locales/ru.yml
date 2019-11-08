@@ -6,3 +6,8 @@ ru:
   services:
     gist:
       description: "Вопрос о %{title} от TestGuru"
+  badges:
+    first_attempt: 'Первая попытка'
+    category: 'Категория'
+    level: 'Уровень'
+    unspecified: 'Не указано'

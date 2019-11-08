@@ -16,7 +16,7 @@
         <td><%= @test.category&.title %></td>
     </tbody>
   </table>
-  <div class="btn-group" role="group" aria-label="Basic example">
+  <div class="btn-group" role="group">
     <%= link_to 'Edit', edit_admin_test_path(@test), class: 'btn btn-primary' %>
     <%= link_to 'Add a question', new_admin_test_question_path(@test), class: 'btn btn-primary'   %>
     <%= link_to 'Delete', admin_test_path(@test), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary'   %>

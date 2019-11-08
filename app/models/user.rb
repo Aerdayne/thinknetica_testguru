@@ -2,8 +2,23 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :taken_tests, dependent: :destroy
-  has_many :tests, through: :taken_tests
+  # Probably not the best solution
+  has_many :tests, through: :taken_tests do
+    def successful
+      where("taken_tests.successful = ?", true)
+    end
+
+    def since_date(date)
+      date ||= '2019-01-01 00:00:00.000000'
+      where("taken_tests.created_at > ?", date)
+    end
+  end
+
+  has_many :given_badges, dependent: :destroy
+  has_many :badges, through: :given_badges
+
   has_many :authored_tests, class_name: 'Test', foreign_key: :author_id
+
   has_many :gists, dependent: :destroy
 
   validates :name, presence: true

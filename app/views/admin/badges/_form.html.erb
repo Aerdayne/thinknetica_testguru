@@ -1,0 +1,30 @@
+<div class="col-8">
+  <h2><%= badge_header(@badge) %></h2>
+  <%= form_with model: [:admin, @badge], local: true do |form| %>
+    <%= render 'shared/errors', resource: @badge %>
+    <div class='form-group'>
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :badge_name, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= form.label :description %>
+      <%= form.text_field :description, id: :badge_description, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= form.label :image_path %>
+      <%= form.text_field :image_path, id: :badge_image_path, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= form.label :criterion %>
+      <%= form.select :criterion, internationalize_collection(Badge::AVAILABLE_CRITERIA), {}, {class: "browser-default custom-select"} %>
+    </div>
+    <div class='form-group'>
+      <%= form.label :value %>
+      <%= form.text_field :value, id: :badge_value, class: 'form-control' %>
+    </div>
+    <div class='btn-group'>
+      <%= link_to 'View badges', admin_badges_path, class: 'btn btn-primary' %>
+      <%= form.submit class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>

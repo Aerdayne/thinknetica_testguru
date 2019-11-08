@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :given_badges, only: :index
+  resources :badges, only: :index
+
   namespace :admin do
     resources :tests, shallow: true do
       patch :update_inline, on: :member
@@ -27,6 +30,7 @@ Rails.application.routes.draw do
         resources :answers, shallow: true
       end
     end
+    resources :badges
     resources :gists, only: :index
   end
 end
