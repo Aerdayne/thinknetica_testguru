@@ -23,7 +23,7 @@ class BadgeDispenserService
     return unless @taken_test.successful? && badge.value == @taken_test.test.difficulty
 
     scope_name = @taken_test.test.difficulty.to_sym
-    (Test.hard - @user.tests.successful.since_date(last_given_badge_date(badge)).method(scope_name).call).empty?
+    (Test.send(badge.value) - @user.tests.successful.since_date(last_given_badge_date(badge)).method(scope_name).call).empty?
   end
 
   private

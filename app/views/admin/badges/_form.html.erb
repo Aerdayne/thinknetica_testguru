@@ -16,7 +16,7 @@
     </div>
     <div class='form-group'>
       <%= form.label :criterion %>
-      <%= form.collection_select :criterion, Badge::AVAILABLE_CRITERIA.map(&:capitalize), :to_s, :to_s, {prompt: true}, {class: "browser-default custom-select"} %>
+      <%= form.select :criterion, internationalize_collection(Badge::AVAILABLE_CRITERIA), {}, {class: "browser-default custom-select"} %>
     </div>
     <div class='form-group'>
       <%= form.label :value %>
