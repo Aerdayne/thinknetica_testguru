@@ -38,3 +38,8 @@ en:
   services:
     gist:
       description: "A question about %{title} from TestGuru"
+  badges:
+    first_attempt: 'First attempt'
+    category: 'Category'
+    level: 'Level'
+    unspecified: 'Unspecified'
