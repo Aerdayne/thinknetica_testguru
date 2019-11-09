@@ -12,10 +12,11 @@ class TakenTest < ApplicationRecord
     self.timed = in_time?
     self.successful = successful?
     save!
+    self.current_question = nil unless in_time?
   end
 
   def completed?
-    current_question.nil? || !in_time?
+    current_question.nil?
   end
 
   def in_time?
@@ -25,19 +26,19 @@ class TakenTest < ApplicationRecord
   end
 
   def end_time
-    return nil if test.duration.nil?
+    return if test.duration.nil?
 
     created_at.to_datetime + test.duration.seconds
   end
 
   def time_left
-    return nil if test.duration.nil?
+    return if test.duration.nil?
 
     (end_time.to_f - DateTime.now.to_f).to_f
   end
 
   def successful?
-    correct_questions / test.questions.size >= MINIMUM_PERCENTAGE && timed?
+    correct_questions / test.questions.size >= MINIMUM_PERCENTAGE
   end
 
   def questions_amount

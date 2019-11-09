@@ -3,12 +3,19 @@ document.addEventListener('turbolinks:load', function() {
 
   if (form.dataset.timeLeft) { 
     var timer = document.querySelector('.timer')
-    var timeLeft = parseInt(form.dataset.timeLeft)
+    var timeLeft = parseInt(form.dataset.timeLeft) + 1
     timer.innerHTML = parseTime(timeLeft)
   
     var interval = setInterval(() => {
       timeLeft -= 1
-      if (timeLeft < 1) { clearInterval(interval) }
+      if (!document.querySelector('[data-time-left]')) {
+        clearInterval(interval);
+        return;
+      }
+      if (timeLeft == 0) { 
+        form.submit()
+        clearInterval(interval)
+      }
       timer.innerHTML = parseTime(timeLeft)
     }, 1000)
   }
