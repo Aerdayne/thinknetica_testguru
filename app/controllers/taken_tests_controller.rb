@@ -2,12 +2,7 @@ class TakenTestsController < ApplicationController
   before_action :authenticate_user!
   before_action :identify_taken_test, only: %i[gist show result update]
 
-  def show
-    if @taken_test.current_question.nil?
-      flash[:alert] = 'Test is invalid, sorry for the inconvenience'
-      redirect_to tests_path
-    end
-  end
+  def show; end
 
   def result; end
 

@@ -12,7 +12,6 @@ class TakenTest < ApplicationRecord
     self.timed = in_time?
     self.successful = successful?
     save!
-    self.current_question = nil unless in_time?
   end
 
   def completed?
@@ -66,6 +65,8 @@ class TakenTest < ApplicationRecord
   def next_question
     if new_record?
       test.questions.first
+    elsif !in_time?
+      nil
     else
       test.questions.order(:id).where('id > ?', current_question.id).first
     end

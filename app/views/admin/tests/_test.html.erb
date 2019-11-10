@@ -11,5 +11,5 @@
   <td>
     <%= button_to 'Edit', edit_admin_test_path(test), method: :get, data: { test_id: test.id }, class: 'btn btn-primary form-inline-link' %>
   </td>
-  <td><%= button_to 'Start', start_test_path(test), class: 'btn btn-primary' %></td>
+  <td><%= start_button(test) %></td>
 </tr>
