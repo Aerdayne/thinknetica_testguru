@@ -1,8 +1,11 @@
 <div class="col-8">
+  <h3 class='timer'></h3>
   <h2> Passing the '<%= @taken_test.test.title %>' Test </h2>
   <h3><%= @taken_test.current_question.content %></h3>
   <%= form_with url: taken_test_path(@taken_test), 
-                data: { current_question_id: @taken_test.current_question_number, questions_amount: @taken_test.questions_amount }, 
+                data: { current_question_id: @taken_test.current_question_number, 
+                        questions_amount: @taken_test.questions_amount,
+                        time_left: @taken_test.time_left }, 
                 class: 'answer-form',
                 local: true, 
                 method: :put do |form| %>

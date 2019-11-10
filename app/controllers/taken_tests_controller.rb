@@ -10,11 +10,15 @@ class TakenTestsController < ApplicationController
     @taken_test.accept!(params[:answer_ids])
     if @taken_test.completed?
       TestsMailer.completed_test(@taken_test).deliver_now
+
+      flash[:alert] = 'Time is up!' unless @taken_test.timed?
+
       badges = BadgeDispenserService.new(@taken_test).parse_criteria
       if badges.any?
         current_user.badges << badges
         flash[:notice] = 'You just acquired a new badge! Check your badge tab'
       end
+
       redirect_to result_taken_test_path(@taken_test)
     else
       render :show
@@ -28,7 +32,7 @@ class TakenTestsController < ApplicationController
       current_user.gists.create(question: question, url: result.html_url)
       flash[:notice] = t('.success', url: helpers.link_to('Gist', result.html_url, target: '_blank'))
     else
-      flash[:alert] = t('.failure') 
+      flash[:alert] = t('.failure')
     end
     redirect_to @taken_test
   end

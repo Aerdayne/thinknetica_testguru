@@ -7,6 +7,8 @@ class Test < ApplicationRecord
 
   has_many :questions, dependent: :destroy
 
+  before_save :before_save_convert_duration
+
   validates :title, :content, presence: true
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :title, uniqueness: { scope: :level }
@@ -25,4 +27,10 @@ class Test < ApplicationRecord
   scope :medium, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..Float::INFINITY)}
   scope :by_category, ->(cat_title) { joins(:category).where(categories: {title: cat_title}).order(title: :desc)}
+
+  private
+
+  def before_save_convert_duration
+    self.duration = duration * 60 unless duration.nil?
+  end
 end

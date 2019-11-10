@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_120519) do
     t.integer "user_id"
     t.integer "test_id"
     t.boolean "successful", default: false, null: false
+    t.boolean "timed", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "current_question_id"
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_11_05_120519) do
     t.text "title", default: "no title", null: false
     t.text "content", default: "no content", null: false
     t.integer "level", default: 1, null: false
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "author_id"

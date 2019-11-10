@@ -8,13 +8,32 @@ class TakenTest < ApplicationRecord
   before_validation :before_validation_set_current_question
 
   def accept!(answer_ids)
-    self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?))
+    self.correct_questions += 1 if correct_answer?(answer_ids.reject(&:empty?)) && in_time?
+    self.timed = in_time?
     self.successful = successful?
     save!
   end
 
   def completed?
     current_question.nil?
+  end
+
+  def in_time?
+    return true if test.duration.nil?
+
+    end_time > DateTime.now
+  end
+
+  def end_time
+    return if test.duration.nil?
+
+    created_at.to_datetime + test.duration.seconds
+  end
+
+  def time_left
+    return if test.duration.nil?
+
+    (end_time.to_f - DateTime.now.to_f).to_f
   end
 
   def successful?
@@ -46,6 +65,8 @@ class TakenTest < ApplicationRecord
   def next_question
     if new_record?
       test.questions.first
+    elsif !in_time?
+      nil
     else
       test.questions.order(:id).where('id > ?', current_question.id).first
     end
